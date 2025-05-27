@@ -1,20 +1,16 @@
 name: Run Cypress Tests
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: [push, pull_request]
 
 jobs:
-  cypress-run:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -22,8 +18,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Cypress (CLI and binary)
+      - name: Install Cypress binary
         run: npx cypress install
+
+      - name: Fix Cypress permissions
+        run: chmod +x ./node_modules/.bin/cypress
 
       - name: Run Cypress tests
         run: npx cypress run
