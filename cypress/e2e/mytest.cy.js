@@ -2,7 +2,7 @@
 import 'cypress-plugin-tab'
 
 
-describe('My First Test', () =>
+describe('DemoTest', () =>
 {
   it('Launching the website', () => {
 
@@ -56,6 +56,8 @@ describe('My First Test', () =>
 
     // Checking the order confirmation...
     cy.get("div[class='col-sm-9 col-sm-offset-1'] p").should("contain","Congratulations! Your order has been confirmed!")
+ 
+
 
 
 
